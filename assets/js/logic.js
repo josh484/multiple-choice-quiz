@@ -3,10 +3,12 @@ var choices = document.querySelector("#choices");
 var questionTitle =  document.querySelector("#question-title");
 var button = document.querySelector("#start");
 var startScreen = document.querySelector("#start-screen");
+var endScreen = document.querySelector("#end-screen");
 var timer = document.querySelector("#time");
 
 var counter = 0;
 var currentGameScore = 0;
+var currentGameTotal = 0;
 var gTime = 80;
 
 var newQuiz = [question2, question3];
@@ -16,6 +18,7 @@ button.addEventListener("click", function(){
     question.className = "";
     gameTimer();
     localStorage.setItem("score", currentGameScore++);
+    localStorage.setItem("totalScore", currentGameTotal++);
     quizzes(question1);
 });
 
@@ -29,6 +32,7 @@ choices.addEventListener("click", function(event){
     var element = event.target
     if (element.matches("button") === true){
         var chosen = element.getAttribute("data-question");
+        localStorage.setItem("totalScore", currentGameTotal++);
         if(chosen == "true") {
             console.log("you got it");
             localStorage.setItem("score", currentGameScore++);
@@ -37,6 +41,10 @@ choices.addEventListener("click", function(event){
         }
         else {
             gTime -= 10;
+        }
+        if (currentGameTotal == 4) {
+            question.className = "hide";
+            endScreen.className = "";
         }
     }
 });
