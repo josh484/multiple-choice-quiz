@@ -4,12 +4,14 @@ var questionTitle =  document.querySelector("#question-title");
 var button = document.querySelector("#start");
 var startScreen = document.querySelector("#start-screen");
 var counter = 0;
+var currentGameScore = 0;
 
 var newQuiz = [question2, question3];
  
 button.addEventListener("click", function(){
     startScreen.remove();
     question.className = "";
+    localStorage.setItem("score", currentGameScore++);
     quizzes(question1);
 });
 
@@ -25,6 +27,7 @@ choices.addEventListener("click", function(event){
         var chosen = element.getAttribute("data-question");
         if(chosen == "true") {
             console.log("you got it");
+            localStorage.setItem("score", currentGameScore++);
             removeStuff();
             moveArr();
         }
@@ -38,16 +41,11 @@ function removeStuff(){
 }
 
 function quizzes(quiz){
-    quiz = [answer1= {detail: "true", right: true}, 
-    answer2= {detail: "false", right: false}];
-    
+
     for (var i = 0; i < quiz.length; i++) {
         var newQuestion = document.createElement("p");
         newQuestion.textContent = quiz[i].detail;
         newQuestion.setAttribute("data-question", quiz[i].right);
-        if(newQuestion.getAttribute("data-question") == true){
-            newQuestion.setAttribute("data-question", "answer");
-        }
         choices.appendChild(newQuestion);
     }
 
