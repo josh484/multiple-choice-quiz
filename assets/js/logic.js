@@ -3,14 +3,18 @@ var choices = document.querySelector("#choices");
 var questionTitle =  document.querySelector("#question-title");
 var button = document.querySelector("#start");
 var startScreen = document.querySelector("#start-screen");
+var timer = document.querySelector("#time");
+
 var counter = 0;
 var currentGameScore = 0;
+var gTime = 80;
 
 var newQuiz = [question2, question3];
- 
+
 button.addEventListener("click", function(){
     startScreen.remove();
     question.className = "";
+    gameTimer();
     localStorage.setItem("score", currentGameScore++);
     quizzes(question1);
 });
@@ -23,13 +27,16 @@ function moveArr() {
 }
 choices.addEventListener("click", function(event){
     var element = event.target
-    if (element.matches("p") === true){
+    if (element.matches("button") === true){
         var chosen = element.getAttribute("data-question");
         if(chosen == "true") {
             console.log("you got it");
             localStorage.setItem("score", currentGameScore++);
             removeStuff();
             moveArr();
+        }
+        else {
+            gTime -= 10;
         }
     }
 });
@@ -43,10 +50,21 @@ function removeStuff(){
 function quizzes(quiz){
 
     for (var i = 0; i < quiz.length; i++) {
-        var newQuestion = document.createElement("p");
+        var newQuestion = document.createElement("button");
         newQuestion.textContent = quiz[i].detail;
         newQuestion.setAttribute("data-question", quiz[i].right);
         choices.appendChild(newQuestion);
     }
 
 }
+
+function gameTimer() {
+    var timerInterval = setInterval(function() {
+        gTime--;
+        timer.textContent = gTime;
+        if(gTime === 0) {
+          clearInterval(timerInterval);
+        }
+      }, 800);
+}
+
