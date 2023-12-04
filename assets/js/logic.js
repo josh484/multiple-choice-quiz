@@ -12,13 +12,13 @@ var currentGameScore = 0;
 var currentGameFails = 0;
 var gTime = 80;
 
-var newQuiz = [question1, question2, question3];
+var newQuiz = [question2, question3];
 
 localStorage.setItem("score", currentGameScore);
 localStorage.setItem("totalScore", currentGameFails);
 
 button.addEventListener("click", function(){
-    startScreen.remove();
+    startScreen.className = "hide";
     question.className = "";
     gameTimer();
     quizzes(question1);
@@ -64,10 +64,17 @@ function removeStuff(){
 function quizzes(quiz){
 
     for (var i = 0; i < quiz.length; i++) {
+        if(i > 0) {
         var newQuestion = document.createElement("button");
         newQuestion.textContent = quiz[i].detail;
         newQuestion.setAttribute("data-question", quiz[i].right);
         choices.appendChild(newQuestion);
+        }
+        else{
+            var newQuestion = document.createElement("h2");
+            newQuestion.textContent = quiz[0];
+            questionTitle.append(newQuestion);
+        }
     }
 
 }
