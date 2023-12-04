@@ -6,6 +6,8 @@ var startScreen = document.querySelector("#start-screen");
 var endScreen = document.querySelector("#end-screen");
 var timer = document.querySelector("#time");
 var finalScore = document.querySelector("#final-score")
+var submit = document.querySelector("#submit");
+var initials = document.querySelector("#initials");
 
 var counter = 0;
 var currentGameScore = 0;
@@ -13,6 +15,7 @@ var currentGameFails = 0;
 var gTime = 80;
 
 var newQuiz = [question2, question3];
+var highScores = [];
 
 localStorage.setItem("score", currentGameScore);
 localStorage.setItem("totalScore", currentGameFails);
@@ -59,6 +62,9 @@ function removeStuff(){
     while(choices.firstChild){
         choices.removeChild(choices.lastChild);
     }
+    while(questionTitle.firstChild){
+        questionTitle.removeChild(questionTitle.lastChild);
+    }
 }
 
 function quizzes(quiz){
@@ -78,6 +84,25 @@ function quizzes(quiz){
     }
 
 }
+
+function storeHighScores() {
+    localStorage.setItem("high scores", JSON.stringify(highScores));
+}
+
+submit.addEventListener("click", function(event){
+    event.preventDefault();
+    var newHighscore = currentGameScore;
+    var newInitials = initials.value.trim();
+    if (!newInitials){
+        return;
+    }
+    else{
+    highScores.push(newInitials,newHighscore);
+    storeHighScores();
+    location.replace("./highscores.html");
+    }
+});
+
 
 function gameTimer() {
     var timerInterval = setInterval(function() {
