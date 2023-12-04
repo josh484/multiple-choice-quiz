@@ -86,7 +86,7 @@ function quizzes(quiz){
 }
 
 function storeHighScores() {
-    localStorage.setItem("high scores", JSON.stringify(highScores));
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
 submit.addEventListener("click", function(event){
