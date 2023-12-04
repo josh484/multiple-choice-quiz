@@ -21,8 +21,8 @@ function renderHighScores() {
     }
 }
 
-clear.addEventListener("click", function(){
-    highScores = [];
-    localStorage.setItem("highScores", JSON.stringify(highScores));
-    getHighscore();
+clear.addEventListener("click", function(event){
+        highScores = [];
+        localStorage.setItem("highScores", JSON.stringify(highScores));
+        location.reload();
 });
