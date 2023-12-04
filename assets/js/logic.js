@@ -97,7 +97,7 @@ submit.addEventListener("click", function(event){
         return;
     }
     else{
-    highScores.push(newInitials,newHighscore);
+    highScores.push(newInitials + newHighscore);
     storeHighScores();
     location.replace("./highscores.html");
     }
