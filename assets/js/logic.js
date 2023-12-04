@@ -16,6 +16,7 @@ var gTime = 80;
 
 var newQuiz = [question2, question3];
 var highScores = [];
+pushHighscore();
 
 localStorage.setItem("score", currentGameScore);
 localStorage.setItem("totalScore", currentGameFails);
@@ -93,15 +94,22 @@ submit.addEventListener("click", function(event){
     event.preventDefault();
     var newHighscore = currentGameScore;
     var newInitials = initials.value.trim();
-    if (!newInitials){
+    if (newInitials === ""){
         return;
     }
     else{
-    highScores.push(newInitials + newHighscore);
+    highScores.push(newInitials + " Score: " + newHighscore);
     storeHighScores();
     location.replace("./highscores.html");
     }
 });
+
+function pushHighscore() {
+    var getHighscore = JSON.parse(localStorage.getItem("highScores"));
+    if (getHighscore !== null){
+        highScores = getHighscore;
+    }
+}
 
 
 function gameTimer() {
