@@ -1,5 +1,7 @@
 var list = document.querySelector("#highscores");
-var highscore = [];
+var clear = document.querySelector("#clear");
+var highScores = [];
+
 getHighscore();
 function getHighscore() {
     var getHighscore = JSON.parse(localStorage.getItem("highScores"));
@@ -18,3 +20,9 @@ function renderHighScores() {
         list.append(li);
     }
 }
+
+clear.addEventListener("click", function(){
+    highScores = [];
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+    getHighscore();
+});
