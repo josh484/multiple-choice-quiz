@@ -11,6 +11,8 @@ var submit = document.querySelector("#submit");
 var initials = document.querySelector("#initials");
 var feedback = document.querySelector("#feedback");
 var feedbackItem = document.querySelector("#feedbackItem");
+var sfxCorrect = document.querySelector("#sfxCorrect");
+var sfxIncorrect = document.querySelector("#sfxIncorrect");
 
 var counter = 0;
 var currentGameScore = 0;
@@ -53,6 +55,7 @@ choices.addEventListener("click", function(event){
             removeStuff();
             moveArr();
             answerTimer("Answer is Correct", "green");
+            sfxCorrect.play();
         }
         else {
             localStorage.setItem("totalScore", currentGameFails++);
@@ -60,6 +63,7 @@ choices.addEventListener("click", function(event){
             removeStuff();
             moveArr();
             answerTimer("Answer is Incorrect", "red");
+            sfxIncorrect.play();
         }
         if (currentGameScore + currentGameFails === 4) {
             gTime = 1;
