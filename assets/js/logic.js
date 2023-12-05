@@ -52,14 +52,14 @@ choices.addEventListener("click", function(event){
             localStorage.setItem("score", currentGameScore++);
             removeStuff();
             moveArr();
-            answerTimer("Answer is Correct");
+            answerTimer("Answer is Correct", "green");
         }
         else {
             localStorage.setItem("totalScore", currentGameFails++);
             gTime -= 10;
             removeStuff();
             moveArr();
-            answerTimer("Answer is Incorrect");
+            answerTimer("Answer is Incorrect", "red");
         }
         if (currentGameScore + currentGameFails === 4) {
             localStorage.setItem("score", currentGameScore);
@@ -145,10 +145,11 @@ function gameTimer() {
 
 /* function countdown timer when used countsdown from 2 and shows the feedback div then hides it again after 2 seconds
 content of feedback is either correct or incorrect depending on answer */
-function answerTimer(youGot) {
+function answerTimer(youGot, style) {
     var answerInterval = setInterval(function() {
         answerTime--;
         feedbackItem.textContent = youGot;
+        feedbackItem.style.color = style;
         feedback.className = "";
         if(answerTime === 0) {
           feedback.className = "feedback hide";
