@@ -1,6 +1,6 @@
 # multiple-choice-quiz
 a multiple choice quiz using APIs. 
-Link to Webpage: https://josh484.github.io/Password-Generator/
+Link to Webpage: https://josh484.github.io/multiple-choice-quiz/
 ## Description 
 This project highlights my knowledge in traversing through the DOM, javascript events and client side storage.
 Although still shaky I think my understanding of APIs has increased.
