@@ -1,16 +1,22 @@
 body {
   font-family: Arial;
   font-size: 120%;
+  background-color: #121212;
 }
-
+h1, h2, p {
+  color: white;
+}
+.navColor {
+  background-color: #1F1B24;
+}
 a {
-  color: #563d7c;
+  color: #BB86FC;
   text-decoration: none;
   transition: color 0.1s;
 }
 
 a:hover {
-  color: #8570a5;
+  color: white;
 }
 
 button {
@@ -47,10 +53,14 @@ ol {
 li {
   padding: 5px;
   list-style: decimal inside none;
+  color: white;
 }
 
 li:nth-child(odd) {
-  background-color: #f3edfc;
+  background-color: #1F1A24;
+}
+li:nth-child(even) {
+  background-color: #332940;
 }
 
 .wrapper {
@@ -66,11 +76,6 @@ li:nth-child(odd) {
   text-align: center;
 }
 
-.scores {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
 
 .feedback {
   font-style: italic;
@@ -82,7 +87,9 @@ li:nth-child(odd) {
 }
 
 .timer {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  color: #BB86FC;
+}
+
+hr {
+  color: #BB86FC;
 }
