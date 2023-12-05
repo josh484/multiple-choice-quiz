@@ -10,6 +10,7 @@ var finalScore = document.querySelector("#final-score")
 var submit = document.querySelector("#submit");
 var initials = document.querySelector("#initials");
 var feedback = document.querySelector("#feedback");
+var feedbackItem = document.querySelector("#feedbackItem");
 
 var counter = 0;
 var currentGameScore = 0;
@@ -147,7 +148,7 @@ content of feedback is either correct or incorrect depending on answer */
 function answerTimer(youGot) {
     var answerInterval = setInterval(function() {
         answerTime--;
-        feedback.textContent = youGot;
+        feedbackItem.textContent = youGot;
         feedback.className = "";
         if(answerTime === 0) {
           feedback.className = "feedback hide";
