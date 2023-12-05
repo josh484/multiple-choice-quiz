@@ -62,6 +62,7 @@ choices.addEventListener("click", function(event){
             answerTimer("Answer is Incorrect", "red");
         }
         if (currentGameScore + currentGameFails === 4) {
+            gTime = 1;
             localStorage.setItem("score", currentGameScore);
             finalScore.textContent = currentGameScore;
             question.className = "hide";
