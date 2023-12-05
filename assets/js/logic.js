@@ -14,7 +14,7 @@ var currentGameScore = 0;
 var currentGameFails = 0;
 var gTime = 80;
 
-var newQuiz = [question2, question3];
+var newQuiz = [question2, question3,question4];
 var highScores = [];
 pushHighscore();
 
@@ -50,7 +50,7 @@ choices.addEventListener("click", function(event){
             removeStuff();
             moveArr();
         }
-        if (currentGameScore + currentGameFails === 3) {
+        if (currentGameScore + currentGameFails === 4) {
             localStorage.setItem("score", currentGameScore);
             finalScore.textContent = currentGameScore;
             question.className = "hide";
