@@ -17,7 +17,7 @@ var sfxIncorrect = document.querySelector("#sfxIncorrect");
 var counter = 0;
 var currentGameScore = 0;
 var currentGameFails = 0;
-var gTime = 80;
+var gTime = 30;
 var answerTime = 2;
 
 var newQuiz = [question2, question3,question4];
@@ -138,12 +138,12 @@ function gameTimer() {
     var timerInterval = setInterval(function() {
         gTime--;
         timer.textContent = gTime;
-        if(gTime === 0) {
-          clearInterval(timerInterval);
-        }
         if(gTime <= 0){
+            clearInterval(timerInterval);
             question.className = "hide";
             endScreen.className = "";
+            gTime = 0;
+            finalScore.textContent = currentGameScore;
         }
       }, 800);
 }
