@@ -9,11 +9,13 @@ var timer = document.querySelector("#time");
 var finalScore = document.querySelector("#final-score")
 var submit = document.querySelector("#submit");
 var initials = document.querySelector("#initials");
+var feedback = document.querySelector("#feedback");
 
 var counter = 0;
 var currentGameScore = 0;
 var currentGameFails = 0;
 var gTime = 80;
+var answerTime = 2;
 
 var newQuiz = [question2, question3,question4];
 var highScores = [];
@@ -49,12 +51,14 @@ choices.addEventListener("click", function(event){
             localStorage.setItem("score", currentGameScore++);
             removeStuff();
             moveArr();
+            answerTimer("Answer is Correct");
         }
         else {
             localStorage.setItem("totalScore", currentGameFails++);
             gTime -= 10;
             removeStuff();
             moveArr();
+            answerTimer("Answer is Incorrect");
         }
         if (currentGameScore + currentGameFails === 4) {
             localStorage.setItem("score", currentGameScore);
@@ -138,3 +142,17 @@ function gameTimer() {
       }, 800);
 }
 
+/* function countdown timer when used countsdown from 2 and shows the feedback div then hides it again after 2 seconds
+content of feedback is either correct or incorrect depending on answer */
+function answerTimer(youGot) {
+    var answerInterval = setInterval(function() {
+        answerTime--;
+        feedback.textContent = youGot;
+        feedback.className = "";
+        if(answerTime === 0) {
+          feedback.className = "feedback hide";
+          clearInterval(answerInterval);
+          answerTime = 2;
+        }
+      }, 1000);
+}
