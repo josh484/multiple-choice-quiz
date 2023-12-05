@@ -1,3 +1,4 @@
+/* creating vars for index.html ids */
 var question =  document.querySelector("#questions");
 var choices = document.querySelector("#choices");
 var questionTitle =  document.querySelector("#question-title");
@@ -21,6 +22,8 @@ pushHighscore();
 localStorage.setItem("score", currentGameScore);
 localStorage.setItem("totalScore", currentGameFails);
 
+/* when start game button is pressed, starts the game by hiding the starting
+screen and unhiding the quiz and starts the first question */
 button.addEventListener("click", function(){
     startScreen.className = "hide";
     question.className = "";
@@ -28,18 +31,21 @@ button.addEventListener("click", function(){
     quizzes(question1);
 });
 
+/* function that goes through an array with all the quizzed apart from q1*/
 function moveArr() {
     if ( counter < newQuiz.length) {
         quizzes(newQuiz[counter]);
         counter++;
     } 
 }
+
+/* a listener for the answers when clicked gives a point based on the correct answer
+or loses time if the answer chosen is wrong. when reaching max points hides the quiz and reach end of game */
 choices.addEventListener("click", function(event){
     var element = event.target
     if (element.matches("button") === true){
         var chosen = element.getAttribute("data-question");
         if(chosen == "true") {
-            console.log("you got it");
             localStorage.setItem("score", currentGameScore++);
             removeStuff();
             moveArr();
@@ -59,6 +65,7 @@ choices.addEventListener("click", function(event){
     }
 });
 
+/* function for answers when clicking on answer it removes the previous quiz elements from the page to give way for the next quiz */
 function removeStuff(){
     while(choices.firstChild){
         choices.removeChild(choices.lastChild);
@@ -68,6 +75,8 @@ function removeStuff(){
     }
 }
 
+/* function used by moveArr() when given a quiz question array, goes through the array and then creates 2 elements,
+a header for the quiz question and buttons for each answer. They are give an data attribute based on true or false. a true statement means the question is correct*/
 function quizzes(quiz){
 
     for (var i = 0; i < quiz.length; i++) {
@@ -86,10 +95,12 @@ function quizzes(quiz){
 
 }
 
+/* saves current highscore as a string in localstorage*/
 function storeHighScores() {
     localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
+/* at the save highscore screen take the initials in the text box and the current highscore and push that onto highScores array then save to local storage*/
 submit.addEventListener("click", function(event){
     event.preventDefault();
     var newHighscore = currentGameScore;
@@ -104,6 +115,7 @@ submit.addEventListener("click", function(event){
     }
 });
 
+/* function used at the top of page. Gets the highscores from local storage and pushes them onto the highScores array */
 function pushHighscore() {
     var getHighscore = JSON.parse(localStorage.getItem("highScores"));
     if (getHighscore !== null){
@@ -111,13 +123,17 @@ function pushHighscore() {
     }
 }
 
-
+/* game timer that counts down and if the time reaches 0 then skip to the end screen */
 function gameTimer() {
     var timerInterval = setInterval(function() {
         gTime--;
         timer.textContent = gTime;
         if(gTime === 0) {
           clearInterval(timerInterval);
+        }
+        if(gTime <= 0){
+            question.className = "hide";
+            endScreen.className = "";
         }
       }, 800);
 }
